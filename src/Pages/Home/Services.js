@@ -4,6 +4,7 @@ import cavity from './../../assets/images/cavity.png'
 import fluoride from './../../assets/images/fluoride.png'
 import whitening from './../../assets/images/whitening.png'
 import Service from './Service';
+import ServiceDescription from './ServiceDescription';
 
 const Services = () => {
     const serviceInfos = [
@@ -18,7 +19,10 @@ const Services = () => {
             <div className='mt-16 grid md:grid-cols-3 gap-8'>
                 {serviceInfos.map(serviceInfo => <Service key={serviceInfo._id} serviceInfo={serviceInfo}></Service>)}
             </div>
+
+            <ServiceDescription></ServiceDescription>
         </div>
+
     );
 };
 

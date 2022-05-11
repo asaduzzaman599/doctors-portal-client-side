@@ -6,8 +6,27 @@ const BookingModal = ({ treatment, date, setSelectedTreatment }) => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
+        const email = event.target.email.value;
+        const phone = event.target.phone.value;
+        const name = event.target.name.value;
+        const slot = event.target.slot.value;
 
-        setSelectedTreatment(null)
+        const appointment = {
+            name, email, phone, slot, date
+        }
+        console.log(appointment)
+        fetch("http://localhost:5000/treatment", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(appointment)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setSelectedTreatment(null)
+            })
     }
 
     return (
@@ -20,16 +39,16 @@ const BookingModal = ({ treatment, date, setSelectedTreatment }) => {
                     <form onSubmit={handleSubmit} className="grid gap-4 px-4 mt-4">
                         <input type="text" disabled
                             name="" class="input input-bordered w-full " value={format(date, 'PP')} />
-                        <select class="select select-bordered w-full ">
+                        <select name='slot' class="select select-bordered w-full ">
                             {
                                 slots.map(slot => <option>{slot}</option>)
                             }
 
                         </select>
-                        <input type="text" name="" placeholder="Full Name" class="input input-bordered w-full " />
-                        <input type="text" name="" placeholder="Phone No" class="input input-bordered w-full " />
-                        <input type="text" name=""
-                            placeholder="Email" class="input input-bordered w-full " />
+                        <input type="text" name="name" placeholder="Full Name" class="input input-bordered w-full " required />
+                        <input type="text" name="phone" placeholder="Phone No" class="input input-bordered w-full " required />
+                        <input type="text" name="email"
+                            placeholder="Email" class="input input-bordered w-full " required />
                         <input type="submit" className='btn btn-accent' />
                     </form>
 

@@ -9,7 +9,7 @@ const AvailableTreatments = ({ selected }) => {
     const [selectedTreatment, setSelectedTreatment] = useState(null)
 
     useEffect(() => {
-        fetch("https://raw.githubusercontent.com/ProgrammingHero1/doctors-portal-client-module-72/main/public/services.json")
+        fetch("http://localhost:5000/treatment")
             .then(res => res.json())
             .then(data => setTreatments(data))
     }, [])

@@ -15,7 +15,7 @@ const BookingModal = ({ treatment, date, setSelectedTreatment }) => {
             name, email, phone, slot, date
         }
         console.log(appointment)
-        fetch("http://localhost:5000/treatment", {
+        fetch("http://localhost:5000/booked", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -25,7 +25,10 @@ const BookingModal = ({ treatment, date, setSelectedTreatment }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                setSelectedTreatment(null)
+                if (data.acknowledged) {
+                    alert('Appointment successfully booked')
+                    setSelectedTreatment(null)
+                }
             })
     }
 

@@ -1,11 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-
+import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase.init';
+import SocialLogin from './SocialLogin';
+import Loading from '../Shared/Common/Loading';
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-
+    const [
+        createUserWithEmailAndPassword, u, loading, error,] = useCreateUserWithEmailAndPassword(auth);
+    const [user] = useAuthState(auth)
     const onSubmit = data => console.log(data);
+
+    if (loading) {
+        return (<Loading></Loading>)
+    }
     return (
         <div>
             <div class="hero min-h-screen ">
@@ -79,6 +88,7 @@ const SignUp = () => {
                         <p className='text-center'>Already have account? <Link to='/login' className='text-secondary'>Please Login</Link></p>
 
 
+                        <SocialLogin error={error}></SocialLogin>
 
                     </div>
                 </div>

@@ -1,11 +1,22 @@
 import React from 'react';
+import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { auth } from '../../firebase.init';
+import Loading from '../Shared/Common/Loading';
+import SocialLogin from './SocialLogin';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const [signInWithEmailAndPassword, u, loading, error,] = useSignInWithEmailAndPassword(auth);
+    const [user] = useAuthState(auth)
+    const onSubmit = data => {
+        signInWithEmailAndPassword(data.email, data.password)
+    };
 
-    const onSubmit = data => console.log(data);
+    if (loading) {
+        return (<Loading></Loading>)
+    }
     return (
         <div>
             <div class="hero min-h-screen ">
@@ -63,10 +74,12 @@ const Login = () => {
                         <p className='text-center'>New to Doctors Portal? <Link to='/signup' className='text-secondary'>Create new account</Link></p>
 
 
+                        <SocialLogin error={error}></SocialLogin>
 
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

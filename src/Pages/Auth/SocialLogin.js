@@ -7,8 +7,8 @@ const SocialLogin = ({ error }) => {
     return (
         <div>
             <p className='text-center text-red-500'>{error?.message || gerror?.message}</p>
-            <div class="divider">OR</div>
-            <button class="btn btn-outline w-full" onClick={() => signInWithGoogle()}>CONTINUE WITH GOOGLE</button>
+            <div className="divider">OR</div>
+            <button className="btn btn-outline w-full" onClick={() => signInWithGoogle()}>CONTINUE WITH GOOGLE</button>
         </div>
     );
 };

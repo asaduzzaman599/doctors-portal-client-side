@@ -1,7 +1,10 @@
 import { format } from 'date-fns';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase.init';
 
 const BookingModal = ({ treatment, date, setSelectedTreatment }) => {
+    const [user] = useAuthState(auth)
     const { name, slots } = treatment;
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -34,24 +37,24 @@ const BookingModal = ({ treatment, date, setSelectedTreatment }) => {
 
     return (
         <>
-            <input type="checkbox" id="book-modal" class="modal-toggle" />
-            <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                    <label for="book-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 class="font-bold text-lg">Booking for {name}</h3>
+            <input type="checkbox" id="book-modal" className="modal-toggle" />
+            <div className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <label htmlFor="book-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 className="font-bold text-lg">Booking for {name}</h3>
                     <form onSubmit={handleSubmit} className="grid gap-4 px-4 mt-4">
                         <input type="text" disabled
-                            name="" class="input input-bordered w-full " value={format(date, 'PP')} />
-                        <select name='slot' class="select select-bordered w-full ">
+                            name="" className="input input-bordered w-full " value={format(date, 'PP')} />
+                        <select name='slot' className="select select-bordered w-full ">
                             {
-                                slots.map(slot => <option>{slot}</option>)
+                                slots.map((slot, i) => <option key={i}>{slot}</option>)
                             }
 
                         </select>
-                        <input type="text" name="name" placeholder="Full Name" class="input input-bordered w-full " required />
-                        <input type="text" name="phone" placeholder="Phone No" class="input input-bordered w-full " required />
+                        <input type="text" name="name" value={user?.displayName} className="input input-bordered w-full " required disabled />
+                        <input type="text" name="phone" placeholder="Phone No" className="input input-bordered w-full " required />
                         <input type="text" name="email"
-                            placeholder="Email" class="input input-bordered w-full " required />
+                            value={user?.email} className="input input-bordered w-full " required disabled />
                         <input type="submit" className='btn btn-accent' />
                     </form>
 

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.init';
 import Loading from '../Shared/Common/Loading';
 import SocialLogin from './SocialLogin';
 
 const Login = () => {
+    const location = useLocation()
+    const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithEmailAndPassword, u, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [user] = useAuthState(auth)
@@ -14,22 +16,28 @@ const Login = () => {
         signInWithEmailAndPassword(data.email, data.password)
     };
 
+    const from = location?.state?.from?.pathname || '/appointment';
+    useEffect(() => {
+        if (user) {
+            navigate(from)
+        }
+    }, [user])
     if (loading) {
         return (<Loading></Loading>)
     }
     return (
         <div>
-            <div class="hero min-h-screen ">
-                <div class="md:w-2/6  w-5/6 card  shadow-2xl">
+            <div className="hero min-h-screen ">
+                <div className="md:w-2/6  w-5/6 card  shadow-2xl">
 
-                    <div class="  w-full  bg-base-100 card-body">
-                        <h2 class="text-3xl text-center text-accent font-semibold">Login</h2>
-                        <form onSubmit={handleSubmit(onSubmit)} class="">
-                            <div class="form-control">
-                                <label class="label">
-                                    <span class="label-text">Email</span>
+                    <div className="  w-full  bg-base-100 card-body">
+                        <h2 className="text-3xl text-center text-accent font-semibold">Login</h2>
+                        <form onSubmit={handleSubmit(onSubmit)} className="">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
                                 </label>
-                                <input type="text" placeholder="Your Email" class="input input-bordered"
+                                <input type="text" placeholder="Your Email" className="input input-bordered"
                                     {...register("email", {
                                         required: {
                                             value: true,
@@ -41,16 +49,16 @@ const Login = () => {
                                         }
                                     })}
                                 />
-                                <label class="label">
-                                    {errors.email?.type === 'required' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
-                                    {errors.email?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.email.message}</span>}
+                                <label className="label">
+                                    {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                                    {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
                                 </label>
                             </div>
-                            <div class="form-control">
-                                <label class="label">
-                                    <span class="label-text">Password</span>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" placeholder="Your Password" class="input input-bordered"
+                                <input type="text" placeholder="Your Password" className="input input-bordered"
                                     {...register("password", {
                                         required: {
                                             value: true,
@@ -62,13 +70,13 @@ const Login = () => {
                                         }
                                     })}
                                 />
-                                <label class="label">
-                                    {errors.password?.type === 'required' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
-                                    {errors.password?.type === 'minLength' && <span class="label-text-alt text-red-500">{errors.password.message}</span>}
+                                <label className="label">
+                                    {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                    {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                                 </label>
                             </div>
-                            <div class="form-control mt-6">
-                                <input type="submit" class="btn btn-accent" value="Login" />
+                            <div className="form-control mt-6">
+                                <input type="submit" className="btn btn-accent" value="Login" />
                             </div>
                         </form>
                         <p className='text-center'>New to Doctors Portal? <Link to='/signup' className='text-secondary'>Create new account</Link></p>

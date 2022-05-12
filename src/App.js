@@ -7,6 +7,7 @@ import Footer from './Pages/Shared/Footer';
 import AppointmentSection from './Pages/AppointmentSection/AppointmentSection';
 import Login from './Pages/Auth/Login';
 import SignUp from './Pages/Auth/SignUp';
+import RequiredAuth from './Pages/Auth/RequiredAuth';
 
 
 function App() {
@@ -15,7 +16,11 @@ function App() {
       <Header></Header>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/appointment' element={<AppointmentSection></AppointmentSection>}></Route>
+        <Route path='/appointment' element={
+          <RequiredAuth>
+            <AppointmentSection></AppointmentSection>
+          </RequiredAuth>
+        }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
 

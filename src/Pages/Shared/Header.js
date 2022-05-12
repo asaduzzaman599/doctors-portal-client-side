@@ -13,7 +13,7 @@ const Header = () => {
         <li><Link to='/reviews'>Reviews</Link></li>
         <li><Link to='/'>Contact Us</Link></li>
         <li>{user
-            ? <button class="btn btn-ghost" onClick={() => signOut(auth)}>Logout</button>
+            ? <button className="btn btn-ghost" onClick={() => signOut(auth)}>Logout</button>
             : <Link to='/login'>Login</Link>
         }</li></>
     return (

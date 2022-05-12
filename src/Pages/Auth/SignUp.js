@@ -1,16 +1,22 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState, useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase.init';
 import SocialLogin from './SocialLogin';
 import Loading from '../Shared/Common/Loading';
 const SignUp = () => {
+    const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [
         createUserWithEmailAndPassword, u, loading, error,] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
     const [user] = useAuthState(auth)
-    const onSubmit = data => console.log(data);
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password)
+        await updateProfile({ displayName: data.name })
+        navigate('/appointment')
+    }
 
     if (loading) {
         return (<Loading></Loading>)

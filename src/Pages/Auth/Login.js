@@ -12,6 +12,7 @@ const Login = () => {
                 <div class="md:w-2/6  w-5/6 card  shadow-2xl">
 
                     <div class="  w-full  bg-base-100 card-body">
+                        <h2 class="text-3xl text-center text-accent font-semibold">Login</h2>
                         <form onSubmit={handleSubmit(onSubmit)} class="">
                             <div class="form-control">
                                 <label class="label">

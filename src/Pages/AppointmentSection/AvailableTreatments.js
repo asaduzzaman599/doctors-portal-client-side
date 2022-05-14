@@ -8,17 +8,18 @@ const AvailableTreatments = ({ selected }) => {
     const [treatments, setTreatments] = useState([])
     const [selectedTreatment, setSelectedTreatment] = useState(null)
 
+    const formattedDate = format(selected, 'PP')
     useEffect(() => {
-        fetch("http://localhost:5000/treatment")
+        fetch(`http://localhost:5000/treatment?date=${formattedDate}`)
             .then(res => res.json())
             .then(data => setTreatments(data))
-    }, [])
+    }, [selected])
 
     console.log(selectedTreatment)
     return (
         <div>
 
-            <TItle>Available Appointments on {format(selected, 'PP')}</TItle>
+            <TItle>Available Appointments on {formattedDate}</TItle>
 
             <div className='grid md:grid-cols-3 gap-10 mt-16 p-12'>
                 {

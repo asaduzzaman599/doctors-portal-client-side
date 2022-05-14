@@ -1,24 +1,28 @@
 import { format } from 'date-fns';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
 import { auth } from '../../firebase.init';
 
 const BookingModal = ({ treatment, date, setSelectedTreatment }) => {
     const [user] = useAuthState(auth)
     const { name, slots } = treatment;
+
+    const formattedDate = format(date, 'PP')
     const handleSubmit = (event) => {
         event.preventDefault()
-
-        const email = event.target.email.value;
+        const treatmentId = treatment._id
+        const treatmentName = treatment.name
+        const email = user?.email;
         const phone = event.target.phone.value;
-        const name = event.target.name.value;
+        const userName = user?.name;
         const slot = event.target.slot.value;
 
         const appointment = {
-            name, email, phone, slot, date
+            treatmentId, treatmentName, userName, email, phone, slot, formattedDate
         }
         console.log(appointment)
-        fetch("http://localhost:5000/booked", {
+        fetch("http://localhost:5000/booking", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -28,9 +32,11 @@ const BookingModal = ({ treatment, date, setSelectedTreatment }) => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if (data.acknowledged) {
-                    alert('Appointment successfully booked')
+                if (data.success) {
+                    toast.success(`Appointment for ${treatmentName} successfully booked on  ${slot} ${formattedDate}`)
                     setSelectedTreatment(null)
+                } else {
+                    toast.error(data.message)
                 }
             })
     }

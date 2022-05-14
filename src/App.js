@@ -8,7 +8,8 @@ import AppointmentSection from './Pages/AppointmentSection/AppointmentSection';
 import Login from './Pages/Auth/Login';
 import SignUp from './Pages/Auth/SignUp';
 import RequiredAuth from './Pages/Auth/RequiredAuth';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
 
       </Routes>
       <Footer></Footer>
-
+      <ToastContainer />
     </div>
   );
 }

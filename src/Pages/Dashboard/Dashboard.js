@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import useAdmin from '../../hooks/useAdmin';
+import Loading from '../Shared/Common/Loading';
 
 const Dashboard = () => {
+    const { admin, isLoading } = useAdmin()
+
+    if (isLoading) {
+        return <Loading></Loading>
+    }
     return (
         <div class="drawer drawer-mobile">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
@@ -18,7 +25,9 @@ const Dashboard = () => {
                     {/*  <!-- Sidebar content here --> */}
                     <li><Link to='/dashboard/myappointments'>My Appointments</Link></li>
                     <li><Link to='/dashboard/myreviews'>My Reviews</Link></li>
-                    <li><Link to='/dashboard/users'>All Users</Link></li>
+                    {
+                        admin && <li><Link to='/dashboard/users'>All Users</Link></li>
+                    }
                 </ul>
 
             </div>

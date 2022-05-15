@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 import { auth } from '../../firebase.init';
 
 const Header = () => {
+
     const [user] = useAuthState(auth)
+
+    const signInOut = () => {
+        localStorage.removeItem('access_token')
+        signOut(auth)
+    }
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
@@ -16,7 +22,7 @@ const Header = () => {
             user && <li><Link to='/dashboard'>Dashboard</Link></li>
         }
         <li>{user
-            ? <button className="btn btn-ghost" onClick={() => signOut(auth)}>Logout</button>
+            ? <button className="btn btn-ghost" onClick={signInOut}>Logout</button>
             : <Link to='/login'>Login</Link>
         }</li></>
     return (

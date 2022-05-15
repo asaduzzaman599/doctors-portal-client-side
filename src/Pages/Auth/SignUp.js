@@ -5,6 +5,7 @@ import { useAuthState, useCreateUserWithEmailAndPassword, useUpdateProfile } fro
 import { auth } from '../../firebase.init';
 import SocialLogin from './SocialLogin';
 import Loading from '../Shared/Common/Loading';
+import useToken from '../../hooks/useToken';
 const SignUp = () => {
     const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -12,16 +13,17 @@ const SignUp = () => {
         createUserWithEmailAndPassword, u, loading, error,] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
     const [user] = useAuthState(auth)
+    const { token } = useToken(user)
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password)
         await updateProfile({ displayName: data.name })
         navigate('/appointment')
     }
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate('/')
         }
-    }, [user])
+    }, [token])
 
     if (loading) {
         return (<Loading></Loading>)

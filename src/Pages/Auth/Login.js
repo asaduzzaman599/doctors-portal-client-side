@@ -3,6 +3,7 @@ import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hook
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.init';
+import useToken from '../../hooks/useToken';
 import Loading from '../Shared/Common/Loading';
 import SocialLogin from './SocialLogin';
 
@@ -12,16 +13,17 @@ const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [signInWithEmailAndPassword, u, loading, error,] = useSignInWithEmailAndPassword(auth);
     const [user] = useAuthState(auth)
+    const { token } = useToken(user)
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
     };
 
     const from = location?.state?.from?.pathname || '/appointment';
     useEffect(() => {
-        if (user) {
+        if (token) {
             navigate(from)
         }
-    }, [user])
+    }, [token])
     if (loading) {
         return (<Loading></Loading>)
     }

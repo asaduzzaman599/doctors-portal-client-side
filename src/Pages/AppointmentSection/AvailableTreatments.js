@@ -11,7 +11,7 @@ const AvailableTreatments = ({ selected }) => {
     const [selectedTreatment, setSelectedTreatment] = useState(null)
 
     const formattedDate = format(selected, 'PP')
-    const { isLoading, error, data: treatments, refetch } = useQuery('repoData', () =>
+    const { isLoading, error, data: treatments, refetch } = useQuery(['appointment', formattedDate], () =>
         fetch(`http://localhost:5000/treatment?date=${formattedDate}`).then(res =>
             res.json()
         )

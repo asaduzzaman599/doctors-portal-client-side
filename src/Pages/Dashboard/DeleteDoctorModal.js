@@ -5,7 +5,7 @@ const DeleteDoctorModal = ({ doctor, setDeletingDoctor, email, refetch }) => {
 
 
     const handleDelete = () => {
-        fetch(`http://localhost:5000/doctor/${doctor._id}?email=${email}`, {
+        fetch(`https://doctors-portal-asaduzzaman599.herokuapp.com/doctor/${doctor._id}?email=${email}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('access_token')}`

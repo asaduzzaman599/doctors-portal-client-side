@@ -9,7 +9,7 @@ import Doctor from './Doctor';
 
 const AllDoctors = () => {
     const [user, loading] = useAuthState(auth)
-    const { data: doctors, isLoading, refetch } = useQuery('Doctors', () => fetch(`http://localhost:5000/doctor?email=${user?.email}`, {
+    const { data: doctors, isLoading, refetch } = useQuery('Doctors', () => fetch(`https://doctors-portal-asaduzzaman599.herokuapp.com/doctor?email=${user?.email}`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem('access_token')}`
         }

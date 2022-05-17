@@ -12,7 +12,7 @@ const AddDoctor = () => {
 
     const navigate = useNavigate()
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { data: treatments, isLoading } = useQuery('treatmentName', () => (fetch('http://localhost:5000/treatmentname').then(res => res.json())))
+    const { data: treatments, isLoading } = useQuery('treatmentName', () => (fetch('https://doctors-portal-asaduzzaman599.herokuapp.com/treatmentname').then(res => res.json())))
 
     const [user, loading] = useAuthState(auth)
 
@@ -40,7 +40,7 @@ const AddDoctor = () => {
                     specialization,
                     img: url
                 }
-                fetch(`http://localhost:5000/doctor?email=${user?.email}`, {
+                fetch(`https://doctors-portal-asaduzzaman599.herokuapp.com/doctor?email=${user?.email}`, {
                     method: 'POST',
                     headers: {
                         'content-type': "application/json",

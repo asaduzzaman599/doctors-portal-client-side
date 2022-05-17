@@ -20,7 +20,7 @@ const AddDoctor = () => {
     useEffect(() => {
 
     }, [])
-    const onSubmit = async ({ name, email, speciality }) => {
+    const onSubmit = async ({ name, email, specialization }) => {
 
         // console.log(data)
         const formatData = new FormData()
@@ -37,7 +37,7 @@ const AddDoctor = () => {
                 const doctor = {
                     name,
                     email,
-                    speciality,
+                    specialization,
                     img: url
                 }
                 fetch(`http://localhost:5000/doctor?email=${user?.email}`, {
@@ -114,12 +114,12 @@ const AddDoctor = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span class="block mb-2 text-sm font-medium text-gray-500" >Speciality</span>
+                                    <span class="block mb-2 text-sm font-medium text-gray-500" >Specialization</span>
                                 </label>
-                                <select class="select select-bordered w-full max-w-xs" {...register("speciality", {
+                                <select class="select select-bordered w-full max-w-xs" {...register("specialization", {
                                     required: {
                                         value: true,
-                                        message: "Speciality is required"
+                                        message: "Specialization is required"
                                     },
 
                                 })}>
@@ -130,7 +130,7 @@ const AddDoctor = () => {
                                 </select>
 
                                 <label className="label">
-                                    {errors.speciality?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                    {errors.specialization?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
 
                                 </label>
                             </div>

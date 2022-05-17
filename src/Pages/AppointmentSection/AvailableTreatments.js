@@ -12,12 +12,12 @@ const AvailableTreatments = ({ selected }) => {
 
     const formattedDate = format(selected, 'PP')
     const { isLoading, error, data: treatments, refetch } = useQuery(['appointment', formattedDate], () =>
-        fetch(`http://localhost:5000/treatment?date=${formattedDate}`).then(res =>
+        fetch(`https://doctors-portal-asaduzzaman599.herokuapp.com/treatment?date=${formattedDate}`).then(res =>
             res.json()
         )
     )
     /* useEffect(() => {
-        fetch(`http://localhost:5000/treatment?date=${formattedDate}`)
+        fetch(`https://doctors-portal-asaduzzaman599.herokuapp.com/treatment?date=${formattedDate}`)
             .then(res => res.json())
             .then(data => setTreatments(data))
     }, [selected]) */

@@ -13,7 +13,7 @@ const AllUsers = () => {
     const navigate = useNavigate()
 
     const { isLoading, error, data, refetch } = useQuery('repoData', () =>
-        fetch(`http://localhost:5000/user?email=${user?.email}`, {
+        fetch(`https://doctors-portal-asaduzzaman599.herokuapp.com/user?email=${user?.email}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -34,7 +34,7 @@ const AllUsers = () => {
     /* useEffect(() => {
         if (user) {
             console.log(user)
-            fetch(`http://localhost:5000/user?email=${user?.email}`, {
+            fetch(`https://doctors-portal-asaduzzaman599.herokuapp.com/user?email=${user?.email}`, {
                 method: 'GET',
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('access_token')}`
@@ -63,7 +63,7 @@ const AllUsers = () => {
     }
 
     const makeAdmin = (email) => {
-        fetch(`http://localhost:5000/user/admin/${email}?email=${user?.email}`, {
+        fetch(`https://doctors-portal-asaduzzaman599.herokuapp.com/user/admin/${email}?email=${user?.email}`, {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('access_token')}`

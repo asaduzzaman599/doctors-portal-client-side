@@ -11,7 +11,7 @@ const useToken = (user) => {
         if (user) {
             const userInfo = { email: user?.email, name: user?.displayName, photoURL: user?.photoURL };
 
-            fetch(`http://localhost:5000/user/${user?.email}`, {
+            fetch(`https://doctors-portal-asaduzzaman599.herokuapp.com/user/${user?.email}`, {
                 method: "PUT",
                 headers: {
                     'content-type': 'application/json'

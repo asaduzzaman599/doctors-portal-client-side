@@ -13,9 +13,9 @@ const Services = () => {
         { _id: 3, title: 'Teeth Whitening', description: 'Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the', icon: whitening },
     ]
     return (
-        <div className='p-24'>
+        <div className='lg:p-24 p-6'>
             <TItle>OUR SERVICES</TItle>
-            <h2 className='text-3xl text-center text-accent'>Services We Provide</h2>
+            <h2 className='text-xl lg:text-3xl text-center text-accent'>Services We Provide</h2>
             <div className='mt-16 grid md:grid-cols-3 gap-8'>
                 {serviceInfos.map(serviceInfo => <Service key={serviceInfo._id} serviceInfo={serviceInfo}></Service>)}
             </div>

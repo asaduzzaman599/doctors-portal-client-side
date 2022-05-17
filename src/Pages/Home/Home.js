@@ -8,11 +8,11 @@ import Testimonial from './Testimonial/Testimonial';
 
 const Home = () => {
     return (
-        <div>
+        <div className=' mx-auto'>
             <Banner></Banner>
             <Info></Info>
-            <Services></Services>
-            <Appointment></Appointment>
+            {<Services></Services>}
+            {<Appointment></Appointment>}
             <Testimonial></Testimonial>
             <ContactUs></ContactUs>
         </div>

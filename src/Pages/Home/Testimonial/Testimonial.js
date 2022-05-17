@@ -5,7 +5,7 @@ import Reviews from './Reviews';
 
 const Testimonial = () => {
     return (
-        <div className='px-24'>
+        <div className='lg:px-24 m-6'>
             <div className='flex items-center justify-between'>
                 <div>
                     <TItle textAlign='text-left'>Testimonial</TItle>

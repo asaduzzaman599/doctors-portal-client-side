@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Doctor = ({ doctor, index }) => {
+const Doctor = ({ doctor, index, setDeletingDoctor }) => {
     const { img, name, email, specialization } = doctor
     return (
         <tr>
@@ -15,9 +15,9 @@ const Doctor = ({ doctor, index }) => {
             <td>{email}</td>
             <td>{specialization}</td>
             <td>
-                <button class="btn btn-circle rounded-full border-0 bg-red-500 font-semibold">
+                <label for="my-modal-6" class="btn modal-button btn-circle rounded-full border-0 bg-red-500 font-semibold" onClick={() => setDeletingDoctor(doctor)}>
                     X
-                </button>
+                </label>
             </td>
         </tr>
     );

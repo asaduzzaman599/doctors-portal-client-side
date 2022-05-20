@@ -5,8 +5,8 @@ const Doctor = ({ doctor, index, setDeletingDoctor }) => {
     return (
         <tr>
             <td>
-                <div class="avatar">
-                    <div class="w-16 rounded-full">
+                <div className="avatar">
+                    <div className="w-16 rounded-full">
                         <img src={img} alt='' />
                     </div>
                 </div>
@@ -15,7 +15,7 @@ const Doctor = ({ doctor, index, setDeletingDoctor }) => {
             <td>{email}</td>
             <td>{specialization}</td>
             <td>
-                <label for="my-modal-6" class="btn modal-button btn-circle rounded-full border-0 bg-red-500 font-semibold" onClick={() => setDeletingDoctor(doctor)}>
+                <label htmlFor="my-modal-6" className="btn modal-button btn-circle rounded-full border-0 bg-red-500 font-semibold" onClick={() => setDeletingDoctor(doctor)}>
                     X
                 </label>
             </td>

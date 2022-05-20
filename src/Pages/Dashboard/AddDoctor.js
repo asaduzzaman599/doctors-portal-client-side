@@ -77,7 +77,7 @@ const AddDoctor = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="">
                             <div className="form-control">
                                 <label className="label">
-                                    <span class="block mb-2 text-sm font-medium text-gray-500" >Name</span>
+                                    <span className="block mb-2 text-sm font-medium text-gray-500" >Name</span>
                                 </label>
                                 <input type="text" placeholder="Your Name" className="input input-bordered"
                                     {...register("name", {
@@ -93,7 +93,7 @@ const AddDoctor = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span class="block mb-2 text-sm font-medium text-gray-500" >Email</span>
+                                    <span className="block mb-2 text-sm font-medium text-gray-500" >Email</span>
                                 </label>
                                 <input type="text" placeholder="Your Email" className="input input-bordered"
                                     {...register("email", {
@@ -114,9 +114,9 @@ const AddDoctor = () => {
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span class="block mb-2 text-sm font-medium text-gray-500" >Specialization</span>
+                                    <span className="block mb-2 text-sm font-medium text-gray-500" >Specialization</span>
                                 </label>
-                                <select class="select select-bordered w-full max-w-xs" {...register("specialization", {
+                                <select className="select select-bordered w-full max-w-xs" {...register("specialization", {
                                     required: {
                                         value: true,
                                         message: "Specialization is required"
@@ -136,8 +136,8 @@ const AddDoctor = () => {
                             </div>
                             <div className="form-control">
 
-                                <label class="block mb-2 text-sm font-medium text-gray-500" for="file_input">Upload file</label>
-                                <input type='file' class=" border-2 w-full max-w-xs outline-hidden file:but" {...register("image", {
+                                <label className="block mb-2 text-sm font-medium text-gray-500" htmlFor="file_input">Upload file</label>
+                                <input type='file' className=" border-2 w-full max-w-xs outline-hidden file:but" {...register("image", {
                                     required: {
                                         value: true,
                                         message: "Image is required"

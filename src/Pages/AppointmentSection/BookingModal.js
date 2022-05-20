@@ -6,7 +6,7 @@ import { auth } from '../../firebase.init';
 
 const BookingModal = ({ treatment, date, setSelectedTreatment, refetch }) => {
     const [user] = useAuthState(auth)
-    const { name, slots } = treatment;
+    const { name, slots, price } = treatment;
 
     const formattedDate = format(date, 'PP')
     const handleSubmit = (event) => {
@@ -15,11 +15,11 @@ const BookingModal = ({ treatment, date, setSelectedTreatment, refetch }) => {
         const treatmentName = treatment.name
         const email = user?.email;
         const phone = event.target.phone.value;
-        const userName = user?.name;
+        const userName = user?.displayName;
         const slot = event.target.slot.value;
 
         const appointment = {
-            treatmentId, treatmentName, userName, email, phone, slot, formattedDate
+            treatmentId, treatmentName, userName, email, phone, slot, formattedDate, price
         }
         console.log(appointment)
         fetch("https://doctors-portal-asaduzzaman599.herokuapp.com/booking", {
@@ -47,7 +47,7 @@ const BookingModal = ({ treatment, date, setSelectedTreatment, refetch }) => {
             <input type="checkbox" id="book-modal" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
-                    <label htmlFor="book-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label htmlhtmlFor="book-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="font-bold text-lg">Booking for {name}</h3>
                     <form onSubmit={handleSubmit} className="grid gap-4 px-4 mt-4">
                         <input type="text" disabled

@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { auth } from '../../firebase.init';
 import Loading from '../Shared/Common/Loading';
@@ -42,8 +42,8 @@ const MyAppointments = () => {
     return (
         <div>
             <h3>My Appointments: {appointments.length}</h3>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -51,16 +51,21 @@ const MyAppointments = () => {
                             <th>Treatment</th>
                             <th>Date</th>
                             <th>Slot</th>
+                            <th>Pay</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            appointments.map(({ treatmentName, formattedDate, slot }, i) => <tr>
+                            appointments.map(({ treatmentName, formattedDate, slot, paid, price, _id }, i) => <tr key={_id} >
                                 <th>{i + 1}</th>
                                 <td>{user?.displayName}</td>
                                 <td>{treatmentName}</td>
                                 <td>{formattedDate}</td>
                                 <td>{slot}</td>
+                                <td>{(!paid && price) && <Link to={`/dashboard/payment/${_id}`} className='btn btn-success'>Pay Now</Link>}
+                                    {(paid && price) && <p>Paid</p>}
+
+                                </td>
                             </tr>)
                         }
 

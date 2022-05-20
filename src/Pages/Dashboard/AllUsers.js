@@ -80,8 +80,8 @@ const AllUsers = () => {
     return (
         <div>
             <h3>All User:{users?.length}</h3>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -97,9 +97,9 @@ const AllUsers = () => {
 
                                 <th>{i + 1}</th>
                                 <td>
-                                    <div class="flex items-center gap-5">
-                                        <div class="avatar">
-                                            <div class="mask mask-squircle w-12 h-12">
+                                    <div className="flex items-center gap-5">
+                                        <div className="avatar">
+                                            <div className="mask mask-squircle w-12 h-12">
                                                 <img src={userInfo?.photoURL} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
@@ -110,11 +110,11 @@ const AllUsers = () => {
                                 <td>{userInfo?.email}</td>
                                 <td>
                                     {
-                                        userInfo?.role === 'admin' ? <button class="btn btn-xs">Remove Admin</button> : <button class="btn btn-xs" onClick={() => makeAdmin(userInfo?.email)}>Make Admin</button>
+                                        userInfo?.role === 'admin' ? <button className="btn btn-xs">Remove Admin</button> : <button className="btn btn-xs" onClick={() => makeAdmin(userInfo?.email)}>Make Admin</button>
                                     }
                                 </td>
                                 <th>
-                                    <button class="btn btn-xs">details</button>
+                                    <button className="btn btn-xs">details</button>
                                 </th>
                             </tr>)
                         }

@@ -10,18 +10,18 @@ const Dashboard = () => {
         return <Loading></Loading>
     }
     return (
-        <div class="drawer drawer-mobile">
-            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content flex flex-col  p-10">
+        <div className="drawer drawer-mobile">
+            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content flex flex-col  p-10">
                 {/* <!-- Page content here --> */}
                 <h3 className="text-3xl font-semibold text-green-800">Welcome to Dashboard</h3>
                 <Outlet />
-                <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
+                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
             </div>
-            <div class="drawer-side ">
-                <label for="my-drawer-2" class="drawer-overlay"></label>
-                <ul class="menu p-4 overflow-y-auto w-80 bg-base-300 text-base-content">
+            <div className="drawer-side ">
+                <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+                <ul className="menu p-4 overflow-y-auto w-80 bg-base-300 text-base-content">
                     {/*  <!-- Sidebar content here --> */}
                     <li><Link to='/dashboard/myappointments'>My Appointments</Link></li>
                     <li><Link to='/dashboard/myreviews'>My Reviews</Link></li>
